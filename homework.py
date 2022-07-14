@@ -32,9 +32,7 @@ class Training:
 
     LEN_STEP: ClassVar[float] = 0.65
     M_IN_KM: ClassVar[int] = 1000
-    H_IN_MIN: ClassVar[int] = 60
-    COEFF_CALORIE_1: ClassVar[float] = 18.0
-    COEFF_CALORIE_2: ClassVar[float] = 20.0
+
     action: int
     duration: float
     weight: float
@@ -50,7 +48,7 @@ class Training:
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         raise NotImplementedError(
-            f'Необходимо определить get_spent_calories '
+            'Необходимо определить get_spent_calories '
             f'в классе {self.__class__.__name__}'
         )
 
@@ -68,6 +66,10 @@ class Training:
 class Running(Training):
     """Тренировка: бег."""
 
+    H_IN_MIN: ClassVar[int] = 60
+    COEFF_CALORIE_1: ClassVar[float] = 18.0
+    COEFF_CALORIE_2: ClassVar[float] = 20.0
+
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         return (
@@ -82,12 +84,10 @@ class Running(Training):
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
 
+    H_IN_MIN: ClassVar[int] = 60
     COEFF_CALORIE_1: ClassVar[float] = 0.035
     COEFF_CALORIE_2: ClassVar[float] = 0.029
 
-    action: int
-    duration: float
-    weight: float
     height: int
 
     def get_spent_calories(self) -> float:
@@ -106,11 +106,8 @@ class Swimming(Training):
 
     LEN_STEP: ClassVar[float] = 1.38
     COEFF_CALORIE_1: ClassVar[float] = 1.1
-    COEFF_CALORIE_2: ClassVar[float] = 2
+    COEFF_CALORIE_2: ClassVar[float] = 2.0
 
-    action: int
-    duration: float
-    weight: float
     length_pool: int
     count_pool: int
 
